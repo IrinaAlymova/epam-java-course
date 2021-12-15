@@ -6,6 +6,9 @@ public class ConsoleWriter {
     public void requestNumberFromRange(int min, int max) {
         System.out.printf("Please enter the number! The range is [%d, %d]\n", min, max);
     }
+    public void writeEmptyInputWarning() {
+        System.out.println("Seems like you didn't write anything! Try again!");
+    }
 
     public void writeNotValidNumberWarning() {
         System.out.println("This is not a number! Try again!");
@@ -25,10 +28,7 @@ public class ConsoleWriter {
 
     public void writeWinningLines(int winningNumber, ArrayList<Integer> inputs) {
         System.out.printf("That's right, you won! %d is the number I was thinking of!\n", winningNumber);
-        System.out.printf("Here's your entries: %s", inputs);
-    }
-
-    public void writeIOExceptionWarning() {
-        System.out.println("Something went wrong with the input");
+        System.out.printf("You used %d entries to guess the number!\n", inputs.size());
+        System.out.printf("Here's your entries: %s\n", inputs);
     }
 }

@@ -1,16 +1,19 @@
 package controller;
 
 public class InputValidator {
-    public boolean isValidNumber(String str) {
+    public boolean isEmpty(String str) {
+        return !str.equals("");
+    }
+    public boolean isNotValidNumber(String str) {
         try {
             Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
-    public boolean numberInTheRange(int number, int min, int max) {
-        return number >= min && number <= max;
+    public boolean numberIsNotInTheRange(int number, int min, int max) {
+        return !(number >= min && number <= max);
     }
 }

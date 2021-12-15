@@ -22,16 +22,18 @@ public class MoreLessGameController {
 
         while (!gameOver) {
             consoleWriter.requestNumberFromRange(min, max);
-            String input = inputSource.readLine();
-            if (input == null) {
-                break;
+            String input = inputSource.readInput();
+
+            if (inputValidator.isEmpty(input)) {
+                consoleWriter.writeEmptyInputWarning();
+                continue;
             }
-            if (!inputValidator.isValidNumber(input)) {
+            if (inputValidator.isNotValidNumber(input)) {
                 consoleWriter.writeNotValidNumberWarning();
                 continue;
             }
             int number = Integer.parseInt(input);
-            if (!inputValidator.numberInTheRange(number, min, max)) {
+            if (inputValidator.numberIsNotInTheRange(number, min, max)) {
                 consoleWriter.writeNumberNotInRangeWarning();
                 continue;
             }
