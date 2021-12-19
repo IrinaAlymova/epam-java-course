@@ -1,12 +1,9 @@
 package app;
 
-import static controller.VerificationRegexp.*;
-import static view.TextConstants.*;
-import static view.LocaleConstants.*;
-
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("ivy_ray".matches(LOGIN_REGEXP));
+        String UA_NAME_REGEXP = "^[А-ЩЮЯҐЄІЇа-щьюяґєії'-]{1,20}$";
+        System.out.println("dsjkhfksdj".matches(UA_NAME_REGEXP));
     }
 }

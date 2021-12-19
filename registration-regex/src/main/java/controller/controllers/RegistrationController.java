@@ -1,12 +1,14 @@
-package controller;
+package controller.controllers;
 
+import controller.datasources.InputSource;
+import controller.util.InputVerificationUtil;
 import model.Model;
-import model.User;
+import model.entity.User;
 import view.View;
 
 import java.util.Objects;
 
-import static view.TextConstants.*;
+import static view.util.TextConstants.*;
 
 public class RegistrationController {
     private Model model;

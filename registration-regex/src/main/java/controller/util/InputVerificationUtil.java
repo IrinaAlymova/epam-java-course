@@ -1,8 +1,8 @@
-package controller;
+package controller.util;
 
-import static controller.VerificationRegexp.*;
-import static view.LocaleConstants.APP_LOCALE;
-import static view.TextConstants.*;
+import static controller.util.VerificationRegexp.*;
+import static view.util.LocaleConstants.APP_LOCALE;
+import static view.util.TextConstants.*;
 
 public class InputVerificationUtil {
 

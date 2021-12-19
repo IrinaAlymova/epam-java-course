@@ -1,10 +1,10 @@
 package view;
 
-import model.User;
+import model.entity.User;
 
 import java.util.ResourceBundle;
-import static view.TextConstants.*;
-import static view.LocaleConstants.*;
+import static view.util.TextConstants.*;
+import static view.util.LocaleConstants.*;
 
 public class View {
 

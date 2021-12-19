@@ -1,6 +1,6 @@
 package app;
 
-import controller.Controller;
+import controller.controllers.Controller;
 import model.Model;
 import view.View;
 
