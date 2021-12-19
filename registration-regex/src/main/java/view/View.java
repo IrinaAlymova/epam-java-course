@@ -2,25 +2,39 @@ package view;
 
 import model.User;
 
+import java.util.ResourceBundle;
+import static view.TextConstants.*;
+import static view.LocaleConstants.*;
+
 public class View {
 
-    public void requestName() {
-        System.out.print("Please enter your name!\n");
+    static String MESSAGES_BUNDLE_NAME = "messages";
+    public static final ResourceBundle bundle = ResourceBundle.getBundle(MESSAGES_BUNDLE_NAME, APP_LOCALE);
+
+    public void printMessage(String message){
+        System.out.println(message);
     }
 
-    public void requestLogin() {
-        System.out.print("Please enter your login!\n");
+    public String getConcatenatedString(String... partsOfString){
+        StringBuilder concatString = new StringBuilder();
+        for (String partOfString : partsOfString) {
+            concatString.append(partOfString);
+        }
+        return concatString.toString();
     }
 
-    public void writeInvalidNameWarning(String name) {
-        System.out.printf("Sorry, \"%s\" is not a valid name!\n", name);
+    public void requestInput(String typeOfInput) {
+        printMessage(getConcatenatedString(
+                bundle.getString(INPUT_REQUEST),
+                bundle.getString(typeOfInput)
+        ));
     }
 
-    public void writeInvalidLoginWarning(String login) {
-        System.out.printf("Sorry, \"%s\" is not a valid login! Please, try again!\n", login);
+    public void printInvalidInputWarning(String typeOfInput, String input) {
+        printMessage(String.format(bundle.getString(INPUT_INVALID_WARNING), input));
     }
 
-    public void writeValidInput(User user) {
-        System.out.printf("Thank you for registration, user %s is saved!\n", user);
+    public void printSuccessfulInputMessage(User user) {
+        printMessage(String.format(bundle.getString(REGISTRATION_SUCCESS), user));
     }
 }

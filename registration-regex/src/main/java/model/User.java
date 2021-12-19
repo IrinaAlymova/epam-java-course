@@ -7,8 +7,8 @@ public class User {
     private String login;
 
     public User(String name, String login) {
-        this.name = Objects.requireNonNull(name);
-        this.login = Objects.requireNonNull(login);
+        this.name = name;
+        this.login = login;
     }
 
     @Override

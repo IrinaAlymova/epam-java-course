@@ -15,15 +15,5 @@ public class InputSource {
         }
         return null;
     }
-
-    public boolean ready() {
-        try {
-            return consoleReader.ready();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
 }
 
