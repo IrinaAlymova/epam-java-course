@@ -1,19 +1,52 @@
 package controller;
 
-import model.UserModel;
-import view.ConsoleWriter;
+import model.Model;
+import model.User;
+import view.View;
 
 public class RegistrationController {
-    static ConsoleWriter consoleWriter = new ConsoleWriter();
-    static InputSource inputSource = new InputSource();
+    private Model model;
+    private View view;
+    private InputSource inputSource = new InputSource();
 
-    public static void main(String[] args) {
-        consoleWriter.requestInput();
-        String input = inputSource.readInput();
-        if (!NameVerificationUtil.isValidInput(input)) {
-            consoleWriter.writeInvalidInputWarning(input);
+
+    public RegistrationController(Model model, View view) {
+        this.model = model;
+        this.view = view;
+    }
+
+    public void registerUser() {
+        String name = registerName();
+        String login = registerLogin();
+        User user = new User(name, login);
+        view.writeValidInput(user);
+    }
+
+    private String registerName() {
+        String name = null;
+        while (inputSource.ready()) {
+            view.requestName();
+            name = inputSource.readInput();
+            if (!InputVerificationUtil.isValidName(name)) {
+                view.writeInvalidNameWarning(name);
+            } else {
+                break;
+            }
         }
-        UserModel user = new UserModel(input);
-        consoleWriter.writeValidInput(user);
+        return name;
+    }
+
+    private String registerLogin() {
+        String login = null;
+        while (inputSource.ready()) {
+            view.requestLogin();
+            login = inputSource.readInput();
+            if (!InputVerificationUtil.isValidLogin(login)) {
+                view.writeInvalidLoginWarning(login);
+            } else {
+                break;
+            }
+        }
+        return login;
     }
 }
