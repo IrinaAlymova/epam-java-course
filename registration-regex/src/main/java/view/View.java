@@ -30,8 +30,12 @@ public class View {
         ));
     }
 
-    public void printInvalidInputWarning(String typeOfInput, String input) {
+    public void printInvalidInputWarning(String input) {
         printMessage(String.format(bundle.getString(INPUT_INVALID_WARNING), input));
+    }
+
+    public void printLoginNotUniqueWarning() {
+        printMessage(bundle.getString(LOGIN_NOT_UNIQUE_WARNING));
     }
 
     public void printSuccessfulInputMessage(User user) {

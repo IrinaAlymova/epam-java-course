@@ -4,6 +4,7 @@ import controller.datasources.InputSource;
 import controller.util.InputVerificationUtil;
 import model.Model;
 import model.entity.User;
+import model.repository.LoginNotUniqueException;
 import view.View;
 
 import java.util.Objects;
@@ -21,23 +22,50 @@ public class RegistrationController {
     }
 
     public void registerUser() {
-        String name = Objects.requireNonNull(registerProperty(NAME));
-        String login = Objects.requireNonNull(registerProperty(LOGIN));
+        String name = Objects.requireNonNull(registerName());
+        String login = null;
+        while (true) {
+            try {
+                login = Objects.requireNonNull(registerLogin());
+            } catch (LoginNotUniqueException e) {
+                view.printLoginNotUniqueWarning();
+                continue;
+            }
+            break;
+        }
         User user = new User(name, login);
         view.printSuccessfulInputMessage(user);
     }
 
-    private String registerProperty(String propertyName) {
-        String property = null;
+    private String registerName() {
+        String name = null;
         while (true) {
-            view.requestInput(propertyName);
-            property = inputSource.readInput();
-            if (!InputVerificationUtil.isValid(property, propertyName)) {
-                view.printInvalidInputWarning(propertyName, property);
+            view.requestInput(NAME);
+            name = inputSource.readInput();
+            if (!InputVerificationUtil.isValidName(name)) {
+                view.printInvalidInputWarning(name);
             } else {
                 break;
             }
         }
-        return property;
+        return name;
     }
+
+    private String registerLogin() throws LoginNotUniqueException {
+        String login = null;
+        while (true) {
+            view.requestInput(LOGIN);
+            login = inputSource.readInput();
+            if (!InputVerificationUtil.isValidLogin(login)) {
+                view.printInvalidInputWarning(login);
+            } else {
+                if (!InputVerificationUtil.isUniqueLogin(login)) {
+                    throw new LoginNotUniqueException();
+                }
+                break;
+            }
+        }
+        return login;
+    }
+
 }

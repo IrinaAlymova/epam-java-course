@@ -1,6 +1,7 @@
 package controller.controllers;
 
 import model.Model;
+import model.repository.LoginNotUniqueException;
 import view.View;
 
 public class Controller {

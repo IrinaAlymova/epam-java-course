@@ -1,21 +1,17 @@
 package controller.util;
 
+import model.entity.User;
+import model.repository.UserRepository;
+
+import java.util.HashSet;
+
 import static controller.util.VerificationRegexp.*;
 import static view.util.LocaleConstants.APP_LOCALE;
 import static view.util.TextConstants.*;
 
 public class InputVerificationUtil {
 
-    public static boolean isValid(String property, String propertyName) {
-        if (propertyName.equals(NAME)) {
-            return isValidName(property);
-        } else if (propertyName.equals(LOGIN)) {
-            return isValidLogin(property);
-        }
-        return false;
-    }
-
-    private static boolean isValidName(String name) {
+    public static boolean isValidName(String name) {
         String localeName = APP_LOCALE.getCountry();
         switch (localeName) {
             case "EN":
@@ -28,7 +24,17 @@ public class InputVerificationUtil {
         return false;
     }
 
-    private static boolean isValidLogin(String login) {
+    public static boolean isValidLogin(String login) {
         return  login.matches(LOGIN_REGEXP);
+    }
+
+    public static boolean isUniqueLogin(String login) {
+        HashSet<User> users = UserRepository.getUsers();
+        for (User user : users) {
+            if (user.getLogin().equals(login)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
