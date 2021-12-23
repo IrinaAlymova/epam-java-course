@@ -1,13 +1,7 @@
-package controller.util;
+package controller;
 
-import model.entity.User;
-import model.repository.UserRepository;
-
-import java.util.HashSet;
-
-import static controller.util.VerificationRegexp.*;
-import static view.util.LocaleConstants.APP_LOCALE;
-import static view.util.TextConstants.*;
+import static controller.VerificationRegexp.*;
+import static view.LocaleConstants.APP_LOCALE;
 
 public class InputVerificationUtil {
 
@@ -26,15 +20,5 @@ public class InputVerificationUtil {
 
     public static boolean isValidLogin(String login) {
         return  login.matches(LOGIN_REGEXP);
-    }
-
-    public static boolean isUniqueLogin(String login) {
-        HashSet<User> users = UserRepository.getUsers();
-        for (User user : users) {
-            if (user.getLogin().equals(login)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

@@ -1,4 +1,4 @@
-package controller.util;
+package controller;
 
 public interface VerificationRegexp {
     String EN_NAME_REGEXP = "^[A-Za-z-]{1,20}$";

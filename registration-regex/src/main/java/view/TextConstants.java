@@ -1,4 +1,4 @@
-package view.util;
+package view;
 
 public interface TextConstants {
     String INPUT_REQUEST = "input.request";

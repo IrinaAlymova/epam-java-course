@@ -1,7 +1,7 @@
-package controller.controllers;
+package controller;
 
+import controller.RegistrationController;
 import model.Model;
-import model.repository.LoginNotUniqueException;
 import view.View;
 
 public class Controller {

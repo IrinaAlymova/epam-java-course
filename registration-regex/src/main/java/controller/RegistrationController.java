@@ -1,15 +1,14 @@
-package controller.controllers;
+package controller;
 
-import controller.datasources.InputSource;
-import controller.util.InputVerificationUtil;
 import model.Model;
 import model.entity.User;
-import model.repository.LoginNotUniqueException;
+import model.entity.LoginNotUniqueException;
+import model.entity.UserRepository;
 import view.View;
 
 import java.util.Objects;
 
-import static view.util.TextConstants.*;
+import static view.TextConstants.*;
 
 public class RegistrationController {
     private Model model;
@@ -22,23 +21,23 @@ public class RegistrationController {
     }
 
     public void registerUser() {
-        String name = Objects.requireNonNull(registerName());
-        String login = null;
+        String name = Objects.requireNonNull(obtainName());
+        String login = Objects.requireNonNull(obtainLogin());
+        User user;
         while (true) {
             try {
-                login = Objects.requireNonNull(registerLogin());
+                user = new User(name, login);
+                break;
             } catch (LoginNotUniqueException e) {
                 view.printLoginNotUniqueWarning();
-                continue;
             }
-            break;
         }
-        User user = new User(name, login);
+        UserRepository.addUser(user);
         view.printSuccessfulInputMessage(user);
     }
 
-    private String registerName() {
-        String name = null;
+    private String obtainName() {
+        String name;
         while (true) {
             view.requestInput(NAME);
             name = inputSource.readInput();
@@ -51,17 +50,14 @@ public class RegistrationController {
         return name;
     }
 
-    private String registerLogin() throws LoginNotUniqueException {
-        String login = null;
+    private String obtainLogin() {
+        String login;
         while (true) {
             view.requestInput(LOGIN);
             login = inputSource.readInput();
             if (!InputVerificationUtil.isValidLogin(login)) {
                 view.printInvalidInputWarning(login);
             } else {
-                if (!InputVerificationUtil.isUniqueLogin(login)) {
-                    throw new LoginNotUniqueException();
-                }
                 break;
             }
         }

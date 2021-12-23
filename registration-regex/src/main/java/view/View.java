@@ -3,8 +3,8 @@ package view;
 import model.entity.User;
 
 import java.util.ResourceBundle;
-import static view.util.TextConstants.*;
-import static view.util.LocaleConstants.*;
+import static view.TextConstants.*;
+import static view.LocaleConstants.*;
 
 public class View {
 

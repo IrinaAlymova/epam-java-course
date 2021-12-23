@@ -1,12 +1,17 @@
 package model.entity;
 
+import controller.InputVerificationUtil;
+
 import java.util.Objects;
 
 public class User {
     private String name;
     private String login;
 
-    public User(String name, String login) {
+    public User(String name, String login) throws LoginNotUniqueException {
+        if (!UserRepository.isUniqueLogin(login)) {
+            throw new LoginNotUniqueException("Non-unique login registration attempt", login);
+        }
         this.name = name;
         this.login = login;
     }
