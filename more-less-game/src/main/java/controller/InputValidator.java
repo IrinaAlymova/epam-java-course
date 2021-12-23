@@ -2,8 +2,9 @@ package controller;
 
 public class InputValidator {
     public boolean isEmpty(String str) {
-        return !str.equals("");
+        return str.equals("");
     }
+
     public boolean isNotValidNumber(String str) {
         try {
             Integer.parseInt(str);
@@ -11,9 +12,5 @@ public class InputValidator {
             return true;
         }
         return false;
-    }
-
-    public boolean numberIsNotInTheRange(int number, int min, int max) {
-        return !(number >= min && number <= max);
     }
 }

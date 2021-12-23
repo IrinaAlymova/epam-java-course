@@ -3,11 +3,23 @@ package view;
 import java.util.ArrayList;
 
 public class ConsoleWriter {
+
+    public void writeGreeting() { System.out.println("Let's play the guessing game!"); }
+
+    public void requestMinValue() { System.out.println("Please enter min value!"); }
+
+    public void requestMaxValue() { System.out.println("Please enter max value!"); }
+
     public void requestNumberFromRange(int min, int max) {
-        System.out.printf("Please enter the number! The range is [%d, %d]\n", min, max);
+        System.out.printf("Please enter the number! The range is [%d, %d] (exclusively)\n", min, max);
     }
+
     public void writeEmptyInputWarning() {
         System.out.println("Seems like you didn't write anything! Try again!");
+    }
+
+    public void writeInvalidRangeWarning() {
+        System.out.println("Your range is invalid!");
     }
 
     public void writeNotValidNumberWarning() {
