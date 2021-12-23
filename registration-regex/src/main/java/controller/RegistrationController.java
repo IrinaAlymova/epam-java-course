@@ -21,10 +21,10 @@ public class RegistrationController {
     }
 
     public void registerUser() {
-        String name = Objects.requireNonNull(obtainName());
-        String login = Objects.requireNonNull(obtainLogin());
         User user;
+        String name = Objects.requireNonNull(obtainName());
         while (true) {
+            String login = Objects.requireNonNull(obtainLogin());
             try {
                 user = new User(name, login);
                 break;
